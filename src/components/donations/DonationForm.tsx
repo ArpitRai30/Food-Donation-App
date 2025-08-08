@@ -1,6 +1,6 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState, useFormStatus } from 'react-dom';
 import React, { useEffect, useRef } from 'react';
 import { addDonationAction } from '@/app/actions';
 import { Button } from '@/components/ui/button';
@@ -31,7 +31,7 @@ function SubmitButton() {
 }
 
 export default function DonationForm() {
-  const [state, formAction] = useFormState(addDonationAction, initialState);
+  const [state, formAction] = useActionState(addDonationAction, initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
   const [date, setDate] = React.useState<Date>();
