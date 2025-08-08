@@ -1,7 +1,6 @@
 'use client';
 
-import { useActionState, useFormStatus } from 'react-dom';
-import React, { useEffect, useRef } from 'react';
+import React, { useActionState, useFormStatus, useEffect, useRef } from 'react';
 import { addDonationAction } from '@/app/actions';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

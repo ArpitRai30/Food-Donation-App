@@ -35,6 +35,12 @@ export async function addDonationAction(prevState: any, formData: FormData) {
   const newDonation: Donation = {
     id: String(Date.now()),
     ...validatedFields.data,
+    location: {
+        address: validatedFields.data.location,
+        // TODO: Geocode the address to get lat/lng
+        latitude: 39.7817,
+        longitude: -89.6501,
+    },
     expirationDate: validatedFields.data.expirationDate.toISOString().split('T')[0],
     status: 'Available',
     imageUrl: 'https://placehold.co/600x400.png',

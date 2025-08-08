@@ -70,7 +70,7 @@ export default function DonationCard({ donation }: DonationCardProps) {
         </div>
         <div className="flex items-center text-sm">
           <MapPin className="w-4 h-4 mr-2 text-primary" />
-          <span>{donation.location}</span>
+          <span>{donation.location.address}</span>
         </div>
       </CardContent>
       <CardFooter className="flex justify-between items-center">

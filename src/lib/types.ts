@@ -6,7 +6,11 @@ export interface Donation {
   foodType: string;
   quantity: string;
   expirationDate: string;
-  location: string;
+  location: {
+    address: string;
+    latitude: number;
+    longitude: number;
+  };
   status: DonationStatus;
   imageUrl: string;
   dataAiHint: string;
