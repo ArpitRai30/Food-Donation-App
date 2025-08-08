@@ -101,7 +101,7 @@ export default function DonationForm() {
                 />
               </PopoverContent>
             </Popover>
-            <input type="hidden" name="expirationDate" value={date?.toISOString()} />
+            <input type="hidden" name="expirationDate" value={date?.toISOString() ?? ''} />
             {state.errors?.expirationDate && <p className="text-sm font-medium text-destructive">{state.errors.expirationDate[0]}</p>}
           </div>
           <div className="space-y-2">
