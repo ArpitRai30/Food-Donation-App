@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Leaf, Bell, HandHelping, PlusCircle, Sparkles, Menu } from 'lucide-react';
+import { Leaf, Bell, HandHelping, PlusCircle, Sparkles, Menu, Truck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
@@ -11,6 +11,7 @@ const navLinks = [
   { href: '/browse', label: 'Browse', icon: HandHelping },
   { href: '/donate', label: 'Donate', icon: PlusCircle },
   { href: '/smart-matching', label: 'Smart Matching', icon: Sparkles },
+  { href: '/volunteer', label: 'Volunteer', icon: Truck },
 ];
 
 export default function Header() {

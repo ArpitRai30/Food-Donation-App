@@ -45,6 +45,7 @@ export async function addDonationAction(prevState: any, formData: FormData) {
     status: 'Available',
     imageUrl: 'https://placehold.co/600x400.png',
     dataAiHint: validatedFields.data.foodType.toLowerCase().split(' ').slice(0, 2).join(' '),
+    otp: null,
   };
 
   donations.unshift(newDonation); // Add to the start of the array
@@ -61,12 +62,35 @@ export async function claimDonationAction(donationId: string) {
     const donation = donations.find(d => d.id === donationId);
     if (donation && donation.status === 'Available') {
       donation.status = 'Claimed';
+      donation.otp = String(Math.floor(100000 + Math.random() * 900000));
       revalidatePath('/browse');
       return { success: true, message: 'Donation claimed successfully!' };
     }
     return { success: false, message: 'Donation could not be claimed.' };
   } catch (error) {
     return { success: false, message: 'An error occurred.' };
+  }
+}
+
+export async function verifyOtpAction(prevState: any, formData: FormData) {
+  const donationId = formData.get('donationId') as string;
+  const otp = formData.get('otp') as string;
+  
+  if (!donationId || !otp) {
+    return { success: false, message: 'Donation ID and OTP are required.' };
+  }
+
+  try {
+    const donation = donations.find(d => d.id === donationId);
+    if (donation && donation.otp === otp) {
+      donation.status = 'Approved';
+      revalidatePath('/browse');
+      revalidatePath(`/otp/${donationId}`);
+      return { success: true, message: 'OTP verified successfully! The donation is approved for pickup.' };
+    }
+    return { success: false, message: 'Invalid OTP. Please try again.' };
+  } catch (error) {
+    return { success: false, message: 'An error occurred during OTP verification.' };
   }
 }
 

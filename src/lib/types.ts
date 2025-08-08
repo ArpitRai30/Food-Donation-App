@@ -14,6 +14,7 @@ export interface Donation {
   status: DonationStatus;
   imageUrl: string;
   dataAiHint: string;
+  otp: string | null;
 }
 
 export interface AppNotification {

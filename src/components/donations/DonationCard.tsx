@@ -1,11 +1,12 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import type { Donation, DonationStatus } from '@/lib/types';
-import { Calendar, HandHelping, MapPin, Package } from 'lucide-react';
+import { Calendar, HandHelping, MapPin, Package, KeyRound, ShieldCheck } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { claimDonationAction } from '@/app/actions';
 import { cn } from '@/lib/utils';
@@ -43,6 +44,9 @@ export default function DonationCard({ donation }: DonationCardProps) {
       }
     });
   };
+  
+  const isClaimable = donation.status === 'Available';
+  const isVerifiable = donation.status === 'Claimed';
 
   return (
     <Card className="flex flex-col overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl dark:hover:shadow-primary/10">
@@ -57,7 +61,12 @@ export default function DonationCard({ donation }: DonationCardProps) {
       </div>
       <CardHeader>
         <CardTitle className="font-headline text-2xl">{donation.foodType}</CardTitle>
-        <p className="text-sm text-muted-foreground">by {donation.donor}</p>
+        <div className="flex justify-between items-center">
+            <p className="text-sm text-muted-foreground">by {donation.donor}</p>
+            <Badge variant="outline" className={cn('font-semibold', statusColors[donation.status])}>
+              {donation.status}
+            </Badge>
+        </div>
       </CardHeader>
       <CardContent className="flex-grow space-y-3">
         <div className="flex items-center text-sm">
@@ -72,20 +81,32 @@ export default function DonationCard({ donation }: DonationCardProps) {
           <MapPin className="w-4 h-4 mr-2 text-primary" />
           <span>{donation.location.address}</span>
         </div>
+        {isVerifiable && donation.otp && (
+            <div className="flex items-center text-sm font-mono bg-muted p-2 rounded-md justify-center">
+                <KeyRound className="w-4 h-4 mr-2 text-accent"/>
+                <span className="tracking-widest">{donation.otp}</span>
+            </div>
+        )}
       </CardContent>
-      <CardFooter className="flex justify-between items-center">
-        <Badge variant="outline" className={cn('font-semibold', statusColors[donation.status])}>
-          {donation.status}
-        </Badge>
-        <Button
-          onClick={handleClaim}
-          disabled={donation.status !== 'Available' || isPending}
-          className="bg-accent text-accent-foreground hover:bg-accent/90"
-          size="sm"
-        >
-          <HandHelping className="w-4 h-4 mr-2" />
-          {isPending ? 'Claiming...' : 'Claim'}
-        </Button>
+      <CardFooter>
+        {isClaimable && (
+            <Button
+              onClick={handleClaim}
+              disabled={isPending}
+              className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+            >
+              <HandHelping className="w-4 h-4 mr-2" />
+              {isPending ? 'Claiming...' : 'Claim'}
+            </Button>
+        )}
+        {isVerifiable && (
+            <Button asChild className="w-full">
+                <Link href={`/otp/${donation.id}`}>
+                    <ShieldCheck className="w-4 h-4 mr-2" />
+                    Verify Pickup
+                </Link>
+            </Button>
+        )}
       </CardFooter>
     </Card>
   );

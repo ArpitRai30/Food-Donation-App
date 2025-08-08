@@ -11,6 +11,7 @@ export const donations: Donation[] = [
     status: 'Available',
     imageUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'fresh produce',
+    otp: null,
   },
   {
     id: '2',
@@ -22,6 +23,7 @@ export const donations: Donation[] = [
     status: 'Available',
     imageUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'bread pastries',
+    otp: null,
   },
   {
     id: '3',
@@ -33,6 +35,7 @@ export const donations: Donation[] = [
     status: 'Claimed',
     imageUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'canned goods',
+    otp: '123456',
   },
   {
     id: '4',
@@ -44,6 +47,7 @@ export const donations: Donation[] = [
     status: 'Approved',
     imageUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'prepared meals',
+    otp: '789012',
   },
   {
     id: '5',
@@ -55,6 +59,7 @@ export const donations: Donation[] = [
     status: 'Picked Up',
     imageUrl: 'https://placehold.co/600x400.png',
     dataAiHint: 'dairy products',
+    otp: '345678',
   },
 ];
 
