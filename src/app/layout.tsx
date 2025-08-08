@@ -5,7 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/Header';
 
 export const metadata: Metadata = {
-  title: 'Share A Bite',
+  title: 'Harvest Hub',
   description: 'A community-focused food donation platform to connect businesses with surplus food to charitable organizations.',
 };
 

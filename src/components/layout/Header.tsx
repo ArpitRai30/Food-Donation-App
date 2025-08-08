@@ -45,7 +45,7 @@ export default function Header() {
         <Link href="/browse" className="mr-8 flex items-center gap-2">
           <Leaf className="h-7 w-7 text-primary" />
           <span className="font-headline text-2xl font-bold tracking-tight text-primary">
-            Share A Bite
+            Harvest Hub
           </span>
         </Link>
 
