@@ -1,0 +1,66 @@
+import type { Donation, AppNotification } from './types';
+
+export const donations: Donation[] = [
+  {
+    id: '1',
+    donor: 'The Corner Cafe',
+    foodType: 'Fresh Produce',
+    quantity: '15 boxes',
+    expirationDate: '2024-10-15',
+    location: '123 Main St, Springfield',
+    status: 'Available',
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'fresh produce',
+  },
+  {
+    id: '2',
+    donor: 'Grand Bakery',
+    foodType: 'Bread and Pastries',
+    quantity: '3 large bags',
+    expirationDate: '2024-10-10',
+    location: '456 Oak Ave, Shelbyville',
+    status: 'Available',
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'bread pastries',
+  },
+  {
+    id: '3',
+    donor: 'Healthy Eats Grocery',
+    foodType: 'Canned Goods',
+    quantity: '50 cans',
+    expirationDate: '2025-05-20',
+    location: '789 Pine Ln, Capital City',
+    status: 'Claimed',
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'canned goods',
+  },
+  {
+    id: '4',
+    donor: 'Downtown Restaurant',
+    foodType: 'Prepared Meals',
+    quantity: '20 meals',
+    expirationDate: '2024-10-09',
+    location: '101 Center St, Ogdenville',
+    status: 'Approved',
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'prepared meals',
+  },
+  {
+    id: '5',
+    donor: 'City Supermarket',
+    foodType: 'Dairy Products',
+    quantity: '2 crates of milk',
+    expirationDate: '2024-10-12',
+    location: '212 Market St, North Haverbrook',
+    status: 'Picked Up',
+    imageUrl: 'https://placehold.co/600x400.png',
+    dataAiHint: 'dairy products',
+  },
+];
+
+export const notifications: AppNotification[] = [
+    { id: '1', message: 'The Corner Cafe has listed a new donation.', timestamp: '2 hours ago', donationId: '1' },
+    { id: '2', message: 'Your claim for Canned Goods from Healthy Eats Grocery has been submitted.', timestamp: '1 day ago', donationId: '3' },
+    { id: '3', message: 'Your claim for Prepared Meals from Downtown Restaurant has been approved.', timestamp: '3 days ago', donationId: '4' },
+    { id: '4', message: 'Dairy Products from City Supermarket has been picked up.', timestamp: '5 days ago', donationId: '5' },
+];
